@@ -4,11 +4,11 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import App from './components/App'
-import repos from './reducers/repos'
-import fetchRepos from './actions/index'
+import repoScan from './reducers/index'
+import { fetchRepos } from './actions/index'
 
 let store = createStore(
-    repos,
+    repoScan,
     applyMiddleware(
         thunkMiddleware
     )
@@ -20,5 +20,5 @@ render(
     <Provider store = { store }>
         <App />
     </Provider>,
-  document.getElementById('root')
+    document.getElementById('root')
 )
