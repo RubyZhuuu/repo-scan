@@ -14,7 +14,7 @@ let store = createStore(
     )
 )
 
-store.dispatch(fetchRepos())
+store.dispatch(fetchRepos("react"))
 
 render(
     <Provider store = { store }>

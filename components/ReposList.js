@@ -7,7 +7,11 @@ const ReposList = ({ items, onRepoItemClick }) => {
 
     return (
         <ul
-            style = {{ width: "300px", float: "left" }}
+            style = {{
+                width: "300px",
+                float: "left",
+                padding: "0"
+            }}
         >
             {
                 items.map((item, index) =>

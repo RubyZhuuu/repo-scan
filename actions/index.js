@@ -1,7 +1,13 @@
 //actions of repo-scan
 import fetch from 'isomorphic-fetch'
-let url = "https://api.github.com/search/repositories?q=react&sort=stars&order=desc"
-let domain = "https://api.github.com"
+const domain = "https://api.github.com"
+
+export const selectKeyword = (keyword) => {
+    return {
+        type: "SELECT_KEYWORD",
+        keyword
+    }
+}
 
 export const receivedRepoReadme = (readme) => {
     return {
@@ -32,7 +38,8 @@ export function selectRepo(name, owner) {
     }
 }
 
-export function fetchRepos() {
+export function fetchRepos(keyword) {
+    var url = domain + "/search/repositories?q=" + keyword
     return dispatch => {
         return fetch(url) 
             .then(response => response.json())
