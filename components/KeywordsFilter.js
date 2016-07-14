@@ -1,5 +1,6 @@
 import React from 'react'
 import KeywordContainer from '../containers/keyword'
+import InputContainer from '../containers/input'
 
 const KeywordsFilter = () => (
     <div>
@@ -15,6 +16,7 @@ const KeywordsFilter = () => (
         <KeywordContainer keyword = "babel">
             Babel
         </KeywordContainer>
+        <InputContainer/>
     </div>
 )
 

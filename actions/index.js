@@ -25,7 +25,7 @@ export const receivedList = (data) => {
 
 export function selectRepo(name, owner) {
     return dispatch => {
-        let url = domain + '/repos/' + owner.login + '/' + name + "/readme"
+        let url = domain + '/repos/' + owner + '/' + name + "/readme"
         return fetch(url)
             .then(response => response.json())
             .then(data => {

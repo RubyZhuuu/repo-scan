@@ -6,6 +6,7 @@ import thunkMiddleware from 'redux-thunk'
 import App from './components/App'
 import repoScan from './reducers/index'
 import { fetchRepos } from './actions/index'
+//import './styles/app.css'
 
 let store = createStore(
     repoScan,

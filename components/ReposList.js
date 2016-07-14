@@ -6,22 +6,22 @@ const ReposList = ({ items, onRepoItemClick }) => {
         return <ul></ul>
 
     return (
-        <ul
-            style = {{
-                width: "300px",
-                float: "left",
-                padding: "0"
-            }}
-        >
-            {
-                items.map((item, index) =>
-                    <RepoItem
-                        key = { index }
-                        { ...item }
-                        onClick = { () => onRepoItemClick(item.name, item.owner) }
-                    />
-            )}
-        </ul>
+        <div className = "repos-list">
+            <ul>
+                {
+                    items.map((item, index) =>
+                        <RepoItem
+                            key = { index }
+                            { ...item }
+                            onClick = { () => onRepoItemClick(item.name, item.owner) }
+                        />
+                )}
+            </ul>
+            <div className = "page">
+                <span>prev</span>
+                <span className = "next">next</span>
+            </div>
+        </div>
     )
 }
 

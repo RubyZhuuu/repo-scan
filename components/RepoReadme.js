@@ -3,13 +3,7 @@ import ReactMarkdown from 'react-markdown'
 
 const RepoReadme = ({ raw }) => {
     return (
-        <div
-            style = {{
-                float: 'left',
-                width: '600px',
-                marginLeft: '20px'
-            }}
-        >
+        <div className = "readme" >
             <ReactMarkdown source = { raw }/>
         </div>
     )
