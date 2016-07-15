@@ -4,13 +4,15 @@ import Keyword from '../components/Keyword'
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        isCurrent: ownProps.keyword === state.keyword
+        isCurrent: ownProps.keyword === state.search.keyword,
+        search: state.search
     }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onClick: () => {
+        clickHandler: (search) => {
+            console.log(search)
             dispatch(selectKeyword(ownProps.keyword))
             dispatch(fetchRepos(ownProps.keyword))
         }

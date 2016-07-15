@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Keyword = ({ onClick, isCurrent, children }) => (
+const Keyword = ({ clickHandler, isCurrent, children, search }) => (
     <span
-        onClick = { onClick }
+        onClick = { () => clickHandler(search) }
         style = {{
             margin: '10px',
             color: isCurrent ? '#55acee' : '#444444'

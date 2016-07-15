@@ -38,13 +38,21 @@ export function selectRepo(name, owner) {
     }
 }
 
-export function fetchRepos(keyword) {
+export function fetchRepos(keyword, pageNum) {
     var url = domain + "/search/repositories?q=" + keyword
+    url += pageNum ? '&page=' + pageNum : ''
     return dispatch => {
         return fetch(url) 
             .then(response => response.json())
             .then(data => {
                 dispatch(receivedList(data))
             })
+    }
+}
+
+export const jumpPage = (pageNum) => {
+    return {
+        type: "JUMP_PAGE",
+        pageNum
     }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import RepoItem from './RepoItem'
+import PageButtonContainer from '../containers/pageButton'
 
 const ReposList = ({ items, onRepoItemClick }) => {
     if(items == undefined)
@@ -18,8 +19,8 @@ const ReposList = ({ items, onRepoItemClick }) => {
                 )}
             </ul>
             <div className = "page">
-                <span>prev</span>
-                <span className = "next">next</span>
+                <span>Prev</span>
+                <PageButtonContainer direction="next"/>
             </div>
         </div>
     )
