@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         clickHandler: (search) => {
             console.log(search)
             dispatch(selectKeyword(ownProps.keyword))
-            dispatch(fetchRepos(ownProps.keyword))
+            dispatch(fetchRepos(ownProps.keyword, ownProps.pageNum))
         }
     }
 }

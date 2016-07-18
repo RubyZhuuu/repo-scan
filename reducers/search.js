@@ -4,9 +4,9 @@ const search = (state = {
 }, action) => {
     switch (action.type) {
         case "SELECT_KEYWORD":
+            return {keyword: action.keyword, pageNum: 1}
         case "JUMP_PAGE":
-            console.log(action)
-            return action.search
+            return Object.assign({}, state, action.pageNum)
         default:
             return state
     }

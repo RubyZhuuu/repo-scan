@@ -1,6 +1,7 @@
 //actions of repo-scan
-import fetch from 'isomorphic-fetch'
-const domain = "https://api.github.com"
+import api from './api'
+//import fetch from 'isomorphic-fetch'
+//const domain = "https://api.github.com"
 
 export const selectKeyword = (keyword) => {
     return {
@@ -23,30 +24,17 @@ export const receivedList = (data) => {
     }
 }
 
-export function selectRepo(name, owner) {
+ export function selectRepo(name, owner) {
     return dispatch => {
-        let url = domain + '/repos/' + owner + '/' + name + "/readme"
-        return fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                fetch(data.download_url)
-                .then(response => response.text())
-                .then(data => {
-                    dispatch(receivedRepoReadme(data))
-                })
-            })
+        api.getReadmeRaw(name, owner)
+        .then(data => dispatch(receivedRepoReadme(data)))
     }
-}
+ }
 
 export function fetchRepos(keyword, pageNum) {
-    var url = domain + "/search/repositories?q=" + keyword
-    url += pageNum ? '&page=' + pageNum : ''
     return dispatch => {
-        return fetch(url) 
-            .then(response => response.json())
-            .then(data => {
-                dispatch(receivedList(data))
-            })
+        api.search(keyword, pageNum)
+        .then(data => dispatch(receivedList(data)))
     }
 }
 
