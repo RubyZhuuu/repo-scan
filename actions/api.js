@@ -24,10 +24,8 @@ var api = {
 }
 
 const myFetch = function(url) {
-    //start loading
     return fetch(url, { Accept: "application/vnd.github.v3+json" })
         .then(response => {
-            //stop lading
             if(response.status >= 400) {
                 throw new Error("Ops, 捕获一个错误码: " + response.status)
             }
@@ -37,7 +35,6 @@ const myFetch = function(url) {
             }
         })
         .catch(e => {
-            //stop loading
             //网络错误的时候会返回TypeError,所以先用TypeError检测是否为网络错误
             if(e instanceof TypeError) {
                 alert("网络错误")

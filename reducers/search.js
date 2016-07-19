@@ -1,12 +1,15 @@
 const search = (state = {
     keyword: "react",
-    pageNum: 1
+    pageNum: 1,
+    isLoading: false
 }, action) => {
     switch (action.type) {
+        case "RECEIVED_LIST":
+            return Object.assign(state, { isLoading: false })
         case "SELECT_KEYWORD":
-            return {keyword: action.keyword, pageNum: 1}
+            return { keyword: action.keyword, pageNum: 1, isLoading: true }
         case "JUMP_PAGE":
-            return Object.assign({}, state, action.pageNum)
+            return { keyword: state.keyword, pageNum: action.pageNum, isLoading: true }
         default:
             return state
     }

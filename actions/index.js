@@ -1,7 +1,5 @@
 //actions of repo-scan
 import api from './api'
-//import fetch from 'isomorphic-fetch'
-//const domain = "https://api.github.com"
 
 export const selectKeyword = (keyword) => {
     return {
@@ -12,8 +10,14 @@ export const selectKeyword = (keyword) => {
 
 export const receivedRepoReadme = (readme) => {
     return {
-        type: "RECEIVE_REPO_README",
+        type: "RECEIVED_REPO_README",
         readme
+    }
+}
+
+export const fetchingRepoReadme = () => {
+    return {
+        type: "FETCHING_REPO_README"
     }
 }
 
@@ -24,8 +28,9 @@ export const receivedList = (data) => {
     }
 }
 
- export function selectRepo(name, owner) {
+export function selectRepo(name, owner) {
     return dispatch => {
+        dispatch(fetchingRepoReadme())
         api.getReadmeRaw(name, owner)
         .then(data => dispatch(receivedRepoReadme(data)))
     }

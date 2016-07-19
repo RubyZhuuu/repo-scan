@@ -2,13 +2,25 @@ import React from 'react'
 import RepoItem from './RepoItem'
 import PageButtonContainer from '../containers/pageButton'
 
-const ReposList = ({ items, onRepoItemClick }) => {
-    if(items == undefined)
-        return <ul></ul>
+const ReposList = ({ items, onRepoItemClick, isLoading }) => {
+    let hide = isLoading ? "mask" : "mask hide"
+
+    if(!items)
+        return (
+            <div className = "repos-list">
+                <div className = "mask">
+                    <div className = "loading"></div>
+                </div>
+            </div>
+        )
 
     return (
         <div className = "repos-list">
-            <ul>
+            <div className = { hide }>
+                <div className = "loading"></div>
+            </div>
+            <div style = {{overflow: "scroll", height: "100%"}}>
+                <ul>
                 {
                     items.map((item, index) =>
                         <RepoItem
@@ -16,12 +28,11 @@ const ReposList = ({ items, onRepoItemClick }) => {
                             { ...item }
                             onClick = { () => onRepoItemClick(item.name, item.owner) }
                         />
-                )}
-            </ul>
-            <div className = "page">
-                <span>Prev</span>
-                <PageButtonContainer direction="next"/>
+                    )
+                }
+                </ul>
             </div>
+            <PageButtonContainer direction="next"/>
         </div>
     )
 }

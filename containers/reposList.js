@@ -31,7 +31,11 @@ function getItems(repos) {
 }
 
 const mapStateToProps = (state) => {
-    return {items: getItems(state.repos.items)}
+    console.log(state)
+    return {
+        isLoading: state.search.isLoading,
+        items: getItems(state.repos.items) 
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
