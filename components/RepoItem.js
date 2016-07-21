@@ -2,27 +2,18 @@
 import React from 'react'
 
 const RepoItem = ({ name, description, updated_at, owner, star_count, onClick }) => (
-    <li
-        onClick = { onClick }
-        style = {{ listStyle: 'none', borderBottom: "solid 1px #ccc" }}
-    >
+    <li onClick = { onClick } className = "repo-item">
         <p>
-            <span
-                style={{ fontWeight: "bold"}}
-            >
+            <span className = "repo-name">
                 { name }
             </span>
-            { ' updated at ' + updated_at + ' by ' + owner}
+            { ` updated at ${updated_at} by ${owner}`}
         </p>
-        <p
-            style = {{ fontWeight: "medium", color: "#555" }}
-        >
+        <p className = "repo-des">
             { description }
         </p>
         <p>
-            <span
-                style = {{ color: "#fd9d28" }}
-            >{ star_count + " stars" }</span>
+            <span className = "star">{ `${star_count} stars` }</span>
         </p>
     </li>
 )

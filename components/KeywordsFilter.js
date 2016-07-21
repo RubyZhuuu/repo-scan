@@ -3,7 +3,7 @@ import KeywordContainer from '../containers/keyword'
 import InputContainer from '../containers/input'
 
 const KeywordsFilter = () => (
-    <div className = "keywordWrapper">
+    <div className = "keyword-wrapper">
         <KeywordContainer keyword = "react">
             React
         </KeywordContainer>

@@ -12,7 +12,7 @@ function _formatUpdatedAt(updateTime) {
     else if(diffDays == 1)
         return "yesterday"
     else
-        return diffDays + "days ago"
+        return `${diffDays} days ago`
 }
 
 function getItems(repos) {
@@ -25,13 +25,14 @@ function getItems(repos) {
             full_name: repo.full_name,
             name: repo.name,
             description: repo.description,
-            star_count: repo.stargazers_count
+            star_count: repo.stargazers_count,
+            github_url: repo.html_url,
+            default_branch: repo.default_branch
         }
     })
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         isLoading: state.search.isLoading,
         items: getItems(state.repos.items) 
@@ -40,8 +41,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onRepoItemClick: (name, owner) => {
-            dispatch(selectRepo(name, owner))
+        onRepoItemClick: (name, owner, github_url, default_branch) => {
+            dispatch(selectRepo(name, owner, github_url, default_branch))
         }
     }
 }

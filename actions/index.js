@@ -8,10 +8,16 @@ export const selectKeyword = (keyword) => {
     }
 }
 
-export const receivedRepoReadme = (readme) => {
+export const receivedRepoReadme = (readme, name, owner, github_url, default_branch) => {
     return {
         type: "RECEIVED_REPO_README",
-        readme
+        readme,
+        repoInfo: {
+            name,
+            owner,
+            github_url,
+            default_branch
+        }
     }
 }
 
@@ -28,11 +34,11 @@ export const receivedList = (data) => {
     }
 }
 
-export function selectRepo(name, owner) {
+export function selectRepo(name, owner, github_url, default_branch) {
     return dispatch => {
         dispatch(fetchingRepoReadme())
         api.getReadmeRaw(name, owner)
-        .then(data => dispatch(receivedRepoReadme(data)))
+        .then(data => dispatch(receivedRepoReadme(data, name, owner, github_url, default_branch)))
     }
  }
 

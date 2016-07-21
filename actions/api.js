@@ -1,18 +1,18 @@
 //define all of the apis, based on Github api
 import fetch from 'isomorphic-fetch'
+import { PAGE_SIZE } from '../utils/constant'
 const domain = "https://api.github.com"
 
 var api = {
     search: function(q, page, sort) {
-        let url = domain + "/search/repositories?q=" + q
+        let url = `${domain}/search/repositories?q=${q}&per_page=${PAGE_SIZE}`
         url += page ? '&page=' + page : ''
 
         return myFetch(url)
             .then(data => data.json())
-        
     },
     getReadmeRaw: function(name, owner) {
-        let url = domain + '/repos/' + owner + '/' + name + "/readme"
+        let url = `${domain}/repos/${owner}/${name}/readme`
 
         return myFetch(url)
             .then(data => data.json())
@@ -24,24 +24,49 @@ var api = {
 }
 
 const myFetch = function(url) {
-    return fetch(url, { Accept: "application/vnd.github.v3+json" })
+    return fetch(url, { "Accept": "application/vnd.github.v3+json" })
         .then(response => {
-            if(response.status >= 400) {
-                throw new Error("Ops, 捕获一个错误码: " + response.status)
-            }
+            if(response.status >= 400 || response.status === 0) {
+                __handleError(response, (error, message) => {
+                    alert(`Error: ${error}.${message}`)
+                })
 
-            if(response.ok) {
+            } else if(response.ok) {
                 return response
             }
         })
         .catch(e => {
             //网络错误的时候会返回TypeError,所以先用TypeError检测是否为网络错误
             if(e instanceof TypeError) {
-                alert("网络错误")
+                alert("Connection Error")
                 return
             }
             alert(e.message)
         })
+}
+
+function __handleError(response, callback) {
+    let error, message
+
+    switch(response.status) {
+        case 0:
+            error = 'Connection Error'
+            message = 'Cannot connect to website.Please check your netword or try again later.'
+            break
+        case 403:
+            if(response.headers.get('X-RateLimit-Remaining') == 0) {
+                error = 'API limit exceeded'
+                message = 'You have exceeded the GitHub API minutely or hourly limit, please try later.'
+            } else {
+                error = 'Forbbiden'
+                message = 'You are not allowed to access GitHub\'s API.'
+            }
+            break
+        default:
+            error = message = response.statusText
+    }
+
+    callback(error, message)
 }
 
 export default api
