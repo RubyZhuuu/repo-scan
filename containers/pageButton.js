@@ -5,7 +5,7 @@ import { PAGE_SIZE } from '../utils/constant'
 import classNames from 'classnames/bind'
 
 const mapStateToProps = (state, ownProps) => {
-    let totalPage = state.repos.total_count ? state.repos.total_count / PAGE_SIZE >> 0 : 1
+    let totalPage = state.repos.total_count ? Math.ceil(state.repos.total_count / PAGE_SIZE) : 1
 
     return {
         search: state.search,

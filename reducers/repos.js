@@ -1,7 +1,10 @@
 const repos = (state = [], action) => {
     switch (action.type) {
         case 'RECEIVED_LIST': 
-            return action.items
+            if(action.items)
+                return action.items
+            else
+                return state
         default:
             return state
     }

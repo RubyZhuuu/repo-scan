@@ -8,8 +8,12 @@ var api = {
         let url = `${domain}/search/repositories?q=${q}&per_page=${PAGE_SIZE}`
         url += page ? '&page=' + page : ''
 
+        //逻辑不太好，catch之后还有then
         return myFetch(url)
-            .then(data => data.json())
+            .then(data => {
+                if(typeof data !== 'undefined')
+                    return data.json()
+            })
     },
     getReadmeRaw: function(name, owner) {
         let url = `${domain}/repos/${owner}/${name}/readme`
@@ -24,10 +28,10 @@ var api = {
 }
 
 const myFetch = function(url) {
-    return fetch(url, { "Accept": "application/vnd.github.v3+json" })
+    return fetch(url, { headers: { "Accept": "application/vnd.github.v3+json" }})
         .then(response => {
             if(response.status >= 400 || response.status === 0) {
-                __handleError(response, (error, message) => {
+                _handleError(response, (error, message) => {
                     alert(`Error: ${error}.${message}`)
                 })
 
@@ -45,7 +49,7 @@ const myFetch = function(url) {
         })
 }
 
-function __handleError(response, callback) {
+function _handleError(response, callback) {
     let error, message
 
     switch(response.status) {
