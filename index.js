@@ -8,6 +8,11 @@ import repoScan from './reducers/index'
 import { fetchRepos } from './actions/index'
 //import './styles/app.css'
 
+
+const rootElement = document.createElement("div")
+rootElement.setAttribute("id", "root")
+document.body.appendChild(rootElement)
+
 let store = createStore(
     repoScan,
     applyMiddleware(

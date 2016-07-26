@@ -1,9 +1,10 @@
 import React from 'react'
 import KeywordContainer from '../containers/keyword'
 import InputContainer from '../containers/input'
+import styles from './KeywordsFilter.css'
 
 const KeywordsFilter = () => (
-    <div className = "keyword-wrapper">
+    <div className = { styles.wrapper }>
         <KeywordContainer keyword = "react">
             React
         </KeywordContainer>

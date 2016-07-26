@@ -2,25 +2,26 @@ import React from 'react'
 import RepoItem from './RepoItem'
 import PageButtonContainer from '../containers/pageButton'
 import classNames from 'classnames/bind'
+import styles from './reposList.css'
 
 const ReposList = ({ items, onRepoItemClick, isLoading }) => {
-    let hide = classNames("mask", { "hide": !isLoading })
+    let hide = classNames(styles.mask, { [styles.hide]: !isLoading })
 
     if(!items)
         return (
-            <div className = "repos-list">
-                <div className = "mask">
-                    <div className = "loading"></div>
+            <div className = { styles.repos_list }>
+                <div className = { styles.mask }>
+                    <div className = { styles.loading }></div>
                 </div>
             </div>
         )
 
     return (
-        <div className = "repos-list">
+        <div className = { styles.repos_list }>
             <div className = { hide }>
-                <div className = "loading"></div>
+                <div className = { styles.loading }></div>
             </div>
-            <div className = "repos-wrapper">
+            <div className = { styles.repos_wrapper }>
                 <ul>
                 {
                     items.map((item, index) =>
@@ -33,7 +34,7 @@ const ReposList = ({ items, onRepoItemClick, isLoading }) => {
                 }
                 </ul>
             </div>
-            <PageButtonContainer direction="next"/>
+            <PageButtonContainer/>
         </div>
     )
 }

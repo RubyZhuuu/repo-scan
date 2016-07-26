@@ -1,0 +1,22 @@
+
+.item {
+    list-style: none;
+    border-bottom: solid 1px #ccc;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.des {
+    font-weight: medium;
+    color: #555555;
+}
+
+.star {
+    color: #fd9d28;
+}
+
+.item:hover {
+    cursor: pointer;
+}

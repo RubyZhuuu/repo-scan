@@ -1,0 +1,12 @@
+.keyword {
+    margin: 10px;
+    color: #444444;
+}
+
+.current {
+    color: #55acee;
+}
+
+.keyword:hover {
+    cursor: pointer;
+}

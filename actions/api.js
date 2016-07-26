@@ -1,11 +1,10 @@
 //define all of the apis, based on Github api
 import fetch from 'isomorphic-fetch'
-import { PAGE_SIZE } from '../utils/constant'
-const domain = "https://api.github.com"
+import { PAGE_SIZE, API_ROOT } from '../utils/constant'
 
 var api = {
     search: function(q, page, sort) {
-        let url = `${domain}/search/repositories?q=${q}&per_page=${PAGE_SIZE}`
+        let url = `${API_ROOT}/search/repositories?q=${q}&per_page=${PAGE_SIZE}`
         url += page ? '&page=' + page : ''
 
         //逻辑不太好，catch之后还有then
@@ -15,8 +14,8 @@ var api = {
                     return data.json()
             })
     },
-    getReadmeRaw: function(name, owner) {
-        let url = `${domain}/repos/${owner}/${name}/readme`
+    getReadmeRaw: function(name, owner, default_branch) {
+        let url = `${API_ROOT}/repos/${owner}/${name}/readme`
 
         return myFetch(url)
             .then(data => data.json())

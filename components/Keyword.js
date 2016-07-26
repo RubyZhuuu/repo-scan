@@ -1,8 +1,9 @@
 import React from 'react'
 import classNames from 'classnames/bind'
+import styles from './keyword.css';
 
 const Keyword = ({ clickHandler, isCurrent, children, search }) => {
-    let classes =classNames("keyword", { current: isCurrent })
+    let classes =classNames(styles.keyword, { [styles.current]: isCurrent })
 
     return (
         <span

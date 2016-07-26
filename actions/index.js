@@ -37,7 +37,7 @@ export const receivedList = (data) => {
 export function selectRepo(name, owner, github_url, default_branch) {
     return dispatch => {
         dispatch(fetchingRepoReadme())
-        api.getReadmeRaw(name, owner)
+        api.getReadmeRaw(name, owner, default_branch)
         .then(data => dispatch(receivedRepoReadme(data, name, owner, github_url, default_branch)))
     }
  }

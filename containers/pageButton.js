@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchRepos, jumpPage } from '../actions'
 import { PAGE_SIZE } from '../utils/constant'
 import classNames from 'classnames/bind'
+import styles from './pageButton.css'
 
 const mapStateToProps = (state, ownProps) => {
     let totalPage = state.repos.total_count ? Math.ceil(state.repos.total_count / PAGE_SIZE) : 1
@@ -35,13 +36,13 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 let PageButtonContainer = ({ dispatch, onNextClick, onPrevClick, search, maxPageNum }) => {
-    let prevBtnClass = classNames({ "active": search.pageNum > 1 })
-    let nextBtnClass = classNames('next', { "active": search.pageNum < maxPageNum })
+    let prevBtnClass = classNames(styles.prev, { [styles.active]: search.pageNum > 1 })
+    let nextBtnClass = classNames(styles.next, { [styles.active]: search.pageNum < maxPageNum })
 
     return (
-        <div className = "page">
+        <div className = { styles.page }>
             <span onClick = { () => onPrevClick(search) } className = { prevBtnClass }>Prev</span>
-            <span className = "page-num">{ `${search.pageNum}/${maxPageNum}` }</span>
+            <span className = { styles.page_num }>{ `${search.pageNum}/${maxPageNum}` }</span>
             <span
                 className = { nextBtnClass }
                 onClick = { () => onNextClick(search, maxPageNum) }

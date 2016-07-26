@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import classNames from 'classnames/bind'
+import styles from './repoReadme.css'
 
 let isImageTag = function(str) {
     return str && str.startsWith('<img')
@@ -24,14 +25,14 @@ let getAbsoluteUri = function(uri, node) {
 }
 
 const RepoReadme = ({ raw }) => {
-    let classes = classNames("mask", { "hide": !raw.isLoading })
+    let classes = classNames(styles.mask, { [styles.hide]: !raw.isLoading })
 
     return (
-        <div className = "readme" >
+        <div className = { styles.readme }>
             <div className = { classes }>
-                <div className = "loading"></div>
+                <div className = { styles.loading}></div>
             </div>
-            <div className="markdown-wrapper">
+            <div className = { styles.wrapper }>
                 <ReactMarkdown source = { raw.text } transformImageUri = { (uri) => {
                     return getAbsoluteUri(uri, raw)
                 }} allowNode = { (node) => {

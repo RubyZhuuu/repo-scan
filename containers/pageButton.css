@@ -1,0 +1,32 @@
+.page {
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    padding: 10px;
+    font-size: 20px;
+    color: #444;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-top: solid 1px #ccc;
+}
+
+.next {
+    float: right;
+}
+
+.prev:hover, .next:hover {
+    cursor: pointer;
+}
+
+.page_num {
+    position: absolute;
+    width: 50px;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+
+.active {
+    color: #55acee !important
+}
