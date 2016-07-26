@@ -38,14 +38,14 @@ export function selectRepo(name, owner, github_url, default_branch) {
     return dispatch => {
         dispatch(fetchingRepoReadme())
         api.getReadmeRaw(name, owner, default_branch)
-        .then(data => dispatch(receivedRepoReadme(data, name, owner, github_url, default_branch)))
+            .then(data => dispatch(receivedRepoReadme(data, name, owner, github_url, default_branch)))
     }
  }
 
 export function fetchRepos(keyword, pageNum) {
     return dispatch => {
         api.search(keyword, pageNum)
-        .then(data => dispatch(receivedList(data)))
+            .then(data => dispatch(receivedList(data)))
     }
 }
 

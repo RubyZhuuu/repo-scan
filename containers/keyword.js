@@ -12,7 +12,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         clickHandler: (search) => {
-            console.log(search)
             dispatch(selectKeyword(ownProps.keyword))
             dispatch(fetchRepos(ownProps.keyword, ownProps.pageNum))
         }
