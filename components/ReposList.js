@@ -1,18 +1,22 @@
-import React, { Component,  } from 'react'
+import React, { Component } from 'react'
 import RepoItem from './RepoItem'
 import PageButtonContainer from '../containers/pageButton'
 import classNames from 'classnames/bind'
 import styles from './reposList.css'
-import { $ } from '../utils/constant'
 
 class ReposList extends Component {
+    constructor(props) {
+        super(props)
+        //this.handleRepoItemClick = this.handleRepoItemClick.bind(this)
+    }
 
     componentWillUpdate() {
-        //UGLY CODE
-        if(!$(`.${styles.repos_wrapper}`))
-            return
-        //$(`.${styles.repos_wrapper}`).scrollTop = 0
         console.log("repos list refresh")
+    }
+
+    componentDidUpdate() {
+        if(this._node)
+            this._node.scrollTop = 0
     }
 
     render() {
@@ -33,14 +37,14 @@ class ReposList extends Component {
                 <div className = { hide }>
                     <div className = { styles.loading }></div>
                 </div>
-                <div className = { styles.repos_wrapper }>
+                <div className = { styles.repos_wrapper } ref = { (c) => this._node = c }>
                     <ul>
                     {
                         items.map((item, index) =>
                             <RepoItem
                                 key = { index }
                                 { ...item }
-                                onClick = { () => onRepoItemClick(item.name, item.owner, item.github_url, item.default_branch) }
+                                onClick = { onRepoItemClick }
                             />
                         )
                     }

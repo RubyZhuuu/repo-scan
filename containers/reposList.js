@@ -41,7 +41,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onRepoItemClick: (name, owner, github_url, default_branch) => {
+        onRepoItemClick: function(name, owner, github_url, default_branch) {
             dispatch(selectRepo(name, owner, github_url, default_branch))
         }
     }
