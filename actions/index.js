@@ -1,5 +1,6 @@
 //actions of repo-scan
 import api from './api'
+import { formatUpdatedAt } from '../utils/tools'
 
 export const selectKeyword = (keyword) => {
     return {
@@ -28,6 +29,21 @@ export const fetchingRepoReadme = () => {
 }
 
 export const receivedList = (data) => {
+    const items =  data.items.map(repo => {
+        return {
+            updated_at: formatUpdatedAt(repo.updated_at),
+            owner: repo.owner.login,
+            full_name: repo.full_name,
+            name: repo.name,
+            description: repo.description,
+            star_count: repo.stargazers_count,
+            github_url: repo.html_url,
+            default_branch: repo.default_branch
+        }
+    })
+
+    data.items = items
+
     return {
         type: "RECEIVED_LIST",
         items: data

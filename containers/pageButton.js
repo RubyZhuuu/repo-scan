@@ -6,6 +6,7 @@ import classNames from 'classnames/bind'
 import styles from './pageButton.css'
 
 const mapStateToProps = (state, ownProps) => {
+    console.log("state check")
     let totalPage = state.repos.total_count ? Math.ceil(state.repos.total_count / PAGE_SIZE) : 1
 
     return {
